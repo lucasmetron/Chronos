@@ -1,7 +1,11 @@
 import styles from './styles.module.css';
 
-const Heading = () => {
-  return <div className={styles.background}>Heading</div>;
+type HeadingProps = {
+  children: React.ReactNode;
+};
+
+const Heading = ({ children }: HeadingProps) => {
+  return <div className={styles.heading}>{children}</div>;
 };
 
 export default Heading;
