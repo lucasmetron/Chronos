@@ -1,0 +1,28 @@
+.menu {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.linkMenu {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  border-radius: 0.8rem;
+  background-color: var(--primary);
+  transition: all ease 0.5s;
+}
+
+.linkMenu:hover {
+  filter: brightness(50%);
+}
+
+.icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--text-over-primary);
+}
