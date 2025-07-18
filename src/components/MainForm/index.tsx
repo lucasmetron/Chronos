@@ -42,7 +42,7 @@ const MainForm = () => {
       startDate: Date.now(),
       completeDate: null,
       interruptDate: null,
-      duration: 25,
+      duration: state.config[nextCycleType],
       type: nextCycleType,
     };
 
