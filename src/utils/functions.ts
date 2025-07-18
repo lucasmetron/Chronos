@@ -9,3 +9,13 @@ export function getNextCycleType(cycle: number): TaskModel['type'] {
   if (cycle % 2 === 0) return 'shortBreakTime';
   return 'workTime';
 }
+
+export function formatSecondsToMinutes(seconds: number): string {
+  const mins = Math.floor(seconds / 60);
+  const secs = seconds % 60;
+
+  const formattedMins = String(mins).padStart(2, '0');
+  const formattedSecs = String(secs).padStart(2, '0');
+
+  return `${formattedMins}:${formattedSecs}`;
+}

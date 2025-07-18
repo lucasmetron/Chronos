@@ -8,7 +8,11 @@ import Cycles from '../Cycles';
 import DefaultButton from '../DefaultButton';
 import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
 import type { TaskModel } from '../../models/TaskModel';
-import { getNextCycle, getNextCycleType } from '../../utils/functions';
+import {
+  formatSecondsToMinutes,
+  getNextCycle,
+  getNextCycleType,
+} from '../../utils/functions';
 
 const MainForm = () => {
   const { state, setState } = useTaskContext();
@@ -17,16 +21,6 @@ const MainForm = () => {
 
   const nextCycle = getNextCycle(state.currentCycle);
   const nextCycleType = getNextCycleType(nextCycle);
-
-  function formatSecondsToMinutes(seconds: number): string {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-
-    const formattedMins = String(mins).padStart(2, '0');
-    const formattedSecs = String(secs).padStart(2, '0');
-
-    return `${formattedMins}:${formattedSecs}`;
-  }
 
   function createNewTask(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
