@@ -7,7 +7,7 @@ const Cycles = () => {
   const { currentCycle } = state;
 
   function returnCssCycle(i: number) {
-    if (i === 7) {
+    if (i === 8) {
       return styles.longBreakTime;
     }
 
@@ -19,11 +19,17 @@ const Cycles = () => {
   }
 
   function returnCycles() {
+    if (currentCycle === 0) {
+      return <p className={styles.noTask}>Inicie uma tarefa</p>;
+    }
     const elements: JSX.Element[] = [];
 
     for (let i = 0; i < currentCycle; i++) {
       elements.push(
-        <span key={i} className={`${styles.cycleDot} ${returnCssCycle(i)}`} />,
+        <span
+          key={i}
+          className={`${styles.cycleDot} ${returnCssCycle(i + 1)}`}
+        />,
       );
     }
 

@@ -1,22 +1,60 @@
 import { useState } from 'react';
 import { PlayCircleIcon } from 'lucide-react';
+import { toast } from 'react-toastify';
 
 import styles from './styles.module.css';
 import DefaultInput from '../DefaultInput';
 import Cycles from '../Cycles';
 import DefaultButton from '../DefaultButton';
 import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
+import type { TaskModel } from '../../models/TaskModel';
+import { getNextCycle, getNextCycleType } from '../../utils/functions';
 
 const MainForm = () => {
-  const { setState } = useTaskContext();
+  const { state, setState } = useTaskContext();
+
   const [taskName, setTaskNAme] = useState('');
+
+  const nextCycle = getNextCycle(state.currentCycle);
+  const nextCycleType = getNextCycleType(nextCycle);
+
+  function formatSecondsToMinutes(seconds: number): string {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+
+    const formattedMins = String(mins).padStart(2, '0');
+    const formattedSecs = String(secs).padStart(2, '0');
+
+    return `${formattedMins}:${formattedSecs}`;
+  }
 
   function createNewTask(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    if (taskName.trim() === '') {
+      toast.error('Preencha a task');
+      return;
+    }
+
+    const newTask: TaskModel = {
+      id: Date.now().toString(),
+      name: taskName,
+      startDate: Date.now(),
+      completeDate: null,
+      interruptDate: null,
+      duration: 25,
+      type: nextCycleType,
+    };
+
+    const secondsRemaining = newTask.duration * 60;
+
     setState(prevState => ({
       ...prevState,
-      currentCycle:
-        prevState.currentCycle === 8 ? 0 : prevState.currentCycle + 1,
+      tasks: [...prevState.tasks, newTask],
+      activeTask: newTask,
+      secondsRemaining,
+      formattedSecondsRemaining: formatSecondsToMinutes(secondsRemaining),
+      currentCycle: nextCycle,
     }));
   }
   return (

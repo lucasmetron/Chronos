@@ -31,3 +31,7 @@
 .longBreakTime {
   background-color: var(--info);
 }
+
+.noTask {
+  opacity: 0.5;
+}
