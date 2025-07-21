@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { PlayCircleIcon } from 'lucide-react';
+import { PlayCircleIcon, StopCircleIcon } from 'lucide-react';
 import { toast } from 'react-toastify';
 
 import styles from './styles.module.css';
@@ -16,6 +16,7 @@ import {
 
 const MainForm = () => {
   const { state, setState } = useTaskContext();
+  console.log('✌️state --->', state);
 
   const [taskName, setTaskNAme] = useState('');
 
@@ -51,8 +52,30 @@ const MainForm = () => {
       currentCycle: nextCycle,
     }));
   }
+
+  function handleStopTask(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    setState(prevState => ({
+      ...prevState,
+      activeTask: null,
+      secondsRemaining: 0,
+      formattedSecondsRemaining: '00:00',
+      tasks: prevState.tasks.map(task => {
+        if (task.id === prevState.activeTask?.id) {
+          return { ...task, interruptDate: Date.now() };
+        }
+        return task;
+      }),
+    }));
+  }
+
   return (
-    <form onSubmit={createNewTask} className={styles.form} action=''>
+    <form
+      onSubmit={state.activeTask === null ? createNewTask : handleStopTask}
+      className={styles.form}
+      action=''
+    >
       <div className={styles.formRow}>
         <DefaultInput
           id='task'
@@ -61,6 +84,7 @@ const MainForm = () => {
           placeholder='Digite algo'
           value={taskName}
           onChange={e => setTaskNAme(e.target.value)}
+          disabled={state.activeTask !== null}
         />
       </div>
 
@@ -73,7 +97,12 @@ const MainForm = () => {
       </div>
 
       <div className={styles.formRow}>
-        <DefaultButton icon={<PlayCircleIcon />} />
+        <DefaultButton
+          color={state.activeTask === null ? 'green' : 'red'}
+          icon={
+            state.activeTask === null ? <PlayCircleIcon /> : <StopCircleIcon />
+          }
+        />
       </div>
     </form>
   );
