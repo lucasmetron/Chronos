@@ -22,6 +22,7 @@ const Cycles = () => {
     if (currentCycle === 0) {
       return <p className={styles.noTask}>Inicie uma tarefa</p>;
     }
+
     const elements: JSX.Element[] = [];
 
     for (let i = 0; i < currentCycle; i++) {
