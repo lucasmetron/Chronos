@@ -10,6 +10,7 @@ import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
 import type { TaskModel } from '../../models/TaskModel';
 import { getNextCycle, getNextCycleType } from '../../utils/functions';
 import { TaskActionTypes } from '../../contexts/TaskContext/taskActions';
+import ShowCycleMessage from '../ShowCycleMessage';
 
 const MainForm = () => {
   const { state, dispatch } = useTaskContext();
@@ -67,7 +68,7 @@ const MainForm = () => {
       </div>
 
       <div className={styles.formRow}>
-        <p>Lorem ipsum dolor sit amet.</p>
+        <ShowCycleMessage />
       </div>
 
       <div className={styles.formRow}>
