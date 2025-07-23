@@ -56,6 +56,7 @@ export function taskReducer(
     case 'REFRESH_COUNTER': {
       return {
         ...state,
+        secondsRemaining: action.payload,
         formattedSecondsRemaining: formatSecondsToMinutes(action.payload),
       };
     }

@@ -24,12 +24,13 @@ export function TaskContextProvider({ children }: TaskContextProvider) {
 
     worker.onmessage(event => {
       const countdown = event.data || 0;
-      dispatch({ type: TaskActionTypes.REFRESH_COUNTER, payload: countdown });
 
       if (countdown <= 0) {
         worker.terminate();
         playRing();
         dispatch({ type: TaskActionTypes.COMPLETED_TASK });
+      } else {
+        dispatch({ type: TaskActionTypes.REFRESH_COUNTER, payload: countdown });
       }
     });
   }, [state, worker]);
