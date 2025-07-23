@@ -19,3 +19,10 @@ export function formatSecondsToMinutes(seconds: number): string {
 
   return `${formattedMins}:${formattedSecs}`;
 }
+
+export function playRing() {
+  const audio = new Audio('/ring.mp3');
+  audio.play().catch(error => {
+    console.error('Error playing sound:', error);
+  });
+}
