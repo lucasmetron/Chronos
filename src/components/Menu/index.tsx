@@ -1,5 +1,5 @@
 import { useLayoutEffect, useState } from 'react';
-
+import { Link } from 'react-router-dom';
 import {
   HistoryIcon,
   HouseIcon,
@@ -7,7 +7,9 @@ import {
   SettingsIcon,
   SunIcon,
 } from 'lucide-react';
+
 import styles from './styles.module.css';
+import { routes } from '../../router/routes';
 
 type ThemeProps = 'dark' | 'light';
 
@@ -31,29 +33,32 @@ const Menu = () => {
 
   return (
     <nav className={styles.menu}>
-      <a
+      <Link
+        to={routes.home}
         className={styles.linkMenu}
         aria-label='Ir para a home'
         title='Ir para a home'
       >
         <HouseIcon className={styles.icon} />
-      </a>
+      </Link>
 
-      <a
+      <Link
+        to={routes.history}
         className={styles.linkMenu}
         aria-label='Ver histórico'
         title='Ver histórico'
       >
         <HistoryIcon className={styles.icon} />
-      </a>
+      </Link>
 
-      <a
+      <Link
+        to={routes.settings}
         className={styles.linkMenu}
         aria-label='Configurações'
         title='Configurações'
       >
         <SettingsIcon className={styles.icon} />
-      </a>
+      </Link>
 
       <a
         className={styles.linkMenu}

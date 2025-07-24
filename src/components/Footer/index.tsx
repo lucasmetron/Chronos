@@ -1,12 +1,15 @@
+import { Link } from 'react-router-dom';
+
 import styles from './styles.module.css';
+import { routes } from '../../router/routes';
 
 const Footer = () => {
   return (
     <footer className={styles.heading}>
-      <a href=''>Entende como funciona a tecnica pomodoro 🍅</a>
-      <a href=''>
+      <Link to={routes.about}>Entende como funciona a tecnica pomodoro 🍅</Link>
+      <Link to={routes.about}>
         Chronos Pomodoro &copy; {new Date().getFullYear()} - Feito com amor ❤️
-      </a>
+      </Link>
     </footer>
   );
 };
