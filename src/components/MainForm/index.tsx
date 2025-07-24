@@ -22,6 +22,7 @@ const MainForm = () => {
 
   function createNewTask(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    toast.dismiss();
 
     if (taskName.trim() === '') {
       toast.error('Preencha a task');
@@ -43,6 +44,8 @@ const MainForm = () => {
 
   function handleStopTask(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    toast.dismiss();
+    toast.error('Timer interrompido');
 
     dispatch({
       type: TaskActionTypes.INTERRUPT_TASK,
