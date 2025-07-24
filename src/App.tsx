@@ -9,7 +9,7 @@ import MessagesContainer from './components/MessagesContainer';
 function App() {
   return (
     <TaskContextProvider>
-      <Router />;
+      <Router />
       <MessagesContainer />
     </TaskContextProvider>
   );

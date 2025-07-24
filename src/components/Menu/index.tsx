@@ -1,5 +1,4 @@
 import { useLayoutEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import {
   HistoryIcon,
   HouseIcon,
@@ -10,6 +9,7 @@ import {
 
 import styles from './styles.module.css';
 import { routes } from '../../router/routes';
+import RouterLink from '../RouterLink';
 
 type ThemeProps = 'dark' | 'light';
 
@@ -33,32 +33,32 @@ const Menu = () => {
 
   return (
     <nav className={styles.menu}>
-      <Link
+      <RouterLink
         to={routes.home}
         className={styles.linkMenu}
         aria-label='Ir para a home'
         title='Ir para a home'
       >
         <HouseIcon className={styles.icon} />
-      </Link>
+      </RouterLink>
 
-      <Link
+      <RouterLink
         to={routes.history}
         className={styles.linkMenu}
         aria-label='Ver histórico'
         title='Ver histórico'
       >
         <HistoryIcon className={styles.icon} />
-      </Link>
+      </RouterLink>
 
-      <Link
+      <RouterLink
         to={routes.settings}
         className={styles.linkMenu}
         aria-label='Configurações'
         title='Configurações'
       >
         <SettingsIcon className={styles.icon} />
-      </Link>
+      </RouterLink>
 
       <a
         className={styles.linkMenu}
