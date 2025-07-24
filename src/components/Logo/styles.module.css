@@ -9,6 +9,7 @@
 }
 
 .logoLink {
+  text-decoration: none;
   width: 3rem;
   display: flex;
   flex-direction: column;
