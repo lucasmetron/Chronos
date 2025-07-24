@@ -16,7 +16,6 @@ export function TaskContextProvider({ children }: TaskContextProvider) {
 
   useLayoutEffect(() => {
     if (!state.activeTask) {
-      console.log('Stopping worker');
       worker.terminate();
     }
 
