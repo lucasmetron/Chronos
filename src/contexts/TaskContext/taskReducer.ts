@@ -61,6 +61,16 @@ export function taskReducer(
       };
     }
 
+    case 'SET_SETTINGS_TIME': {
+      return {
+        ...state,
+        config: {
+          ...state.config,
+          ...action.payload,
+        },
+      };
+    }
+
     case 'RESET_STATE':
       return {
         ...state,

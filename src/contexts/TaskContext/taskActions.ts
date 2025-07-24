@@ -1,4 +1,5 @@
 import type { TaskModel } from '../../models/TaskModel';
+import type { initialTaskState } from './initialTaskState';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
@@ -8,6 +9,7 @@ export enum TaskActionTypes {
   COMPLETED_TASK = 'COMPLETED_TASK',
   REFRESH_COUNTER = 'REFRESH_COUNTER',
   RESET_STATE = 'RESET_STATE',
+  SET_SETTINGS_TIME = 'SET_SETTINGS_TIME',
 }
 
 export type TaskActionModel =
@@ -18,6 +20,10 @@ export type TaskActionModel =
   | {
       type: TaskActionTypes.REFRESH_COUNTER;
       payload: number;
+    }
+  | {
+      type: TaskActionTypes.SET_SETTINGS_TIME;
+      payload: typeof initialTaskState.config;
     }
   | { type: TaskActionTypes.INTERRUPT_TASK }
   | { type: TaskActionTypes.COMPLETED_TASK }
