@@ -1,6 +1,10 @@
 import { Bounce, ToastContainer } from 'react-toastify';
+type ThemeProps = 'dark' | 'light';
 
 const MessagesContainer = () => {
+  const theme =
+    localStorage.getItem('theme') || ('dark' as ThemeProps) || 'dark';
+
   return (
     <ToastContainer
       position='top-center'
@@ -12,7 +16,7 @@ const MessagesContainer = () => {
       pauseOnFocusLoss
       draggable
       pauseOnHover
-      theme='light'
+      theme={theme === 'dark' ? 'light' : 'dark'}
       transition={Bounce}
     />
   );
