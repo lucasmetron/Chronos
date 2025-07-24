@@ -1,11 +1,12 @@
+import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
 import MainTemplate from '../../templates/MainTemplate';
 
 const History = () => {
-  return (
-    <MainTemplate>
-      <div>History</div>
-    </MainTemplate>
-  );
+  const { state } = useTaskContext();
+  const { tasks } = state;
+  console.log('✌️tasks --->', tasks);
+
+  return <MainTemplate>teste</MainTemplate>;
 };
 
 export default History;
