@@ -15,7 +15,9 @@ import ShowCycleMessage from '../ShowCycleMessage';
 const MainForm = () => {
   const { state, dispatch } = useTaskContext();
 
-  const [taskName, setTaskNAme] = useState('');
+  const [taskName, setTaskNAme] = useState(
+    state.tasks[state.tasks.length]?.name || '',
+  );
 
   const nextCycle = getNextCycle(state.currentCycle);
   const nextCycleType = getNextCycleType(nextCycle);
@@ -38,7 +40,7 @@ const MainForm = () => {
       duration: state.config[nextCycleType],
       type: nextCycleType,
     };
-
+    toast.success('Timer iniciado');
     dispatch({ type: TaskActionTypes.START_TASK, payload: newTask });
   }
 

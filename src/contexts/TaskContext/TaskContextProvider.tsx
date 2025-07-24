@@ -19,8 +19,15 @@ export function TaskContextProvider({ children }: TaskContextProvider) {
       worker.terminate();
     }
 
+    //altera o title da página com base no estado da tarefa ativa
+    document.title = state.activeTask
+      ? `Chronos - ${state.formattedSecondsRemaining}`
+      : 'Chronos Pomodoro';
+
+    //envia o estado atual para o worker
     worker.postMesage(state);
 
+    //escuta as mensagens do worker
     worker.onmessage(event => {
       const countdown = event.data || 0;
 
