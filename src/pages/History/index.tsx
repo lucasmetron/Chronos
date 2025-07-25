@@ -13,7 +13,7 @@ import { formatDate } from '../../utils/functions';
 
 const History = () => {
   const { state, dispatch } = useTaskContext();
-  const { tasks } = state;
+  const tasks = [...state.tasks].reverse();
 
   const dictionaryType = {
     workTime: 'Foco',
@@ -69,7 +69,7 @@ const History = () => {
               </thead>
 
               <tbody>
-                {state.tasks.reverse().map(task => {
+                {tasks.map(task => {
                   return (
                     <tr key={task.id}>
                       <td>{task.name}</td>
