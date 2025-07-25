@@ -14,7 +14,12 @@ import { formatDate } from '../../utils/functions';
 const History = () => {
   const { state, dispatch } = useTaskContext();
   const { tasks } = state;
-  console.log('✌️tasks --->', tasks);
+
+  const dictionaryType = {
+    workTime: 'Foco',
+    shortBreakTime: 'Descanso curto',
+    longBreakTime: 'Descanso longo',
+  };
 
   function handleDeleteAllHistory() {
     toast.dismiss();
@@ -38,22 +43,6 @@ const History = () => {
     return 'Abandonada';
   }
 
-  function returnTypeTask(status: TaskModel['type']) {
-    if (status === 'workTime') {
-      return 'Foco';
-    }
-
-    if (status === 'shortBreakTime') {
-      return 'Descanso curto';
-    }
-
-    if (status === 'longBreakTime') {
-      return 'Descanso longo';
-    }
-
-    return 'Erro';
-  }
-
   return (
     <MainTemplate>
       <Container>
@@ -66,7 +55,7 @@ const History = () => {
       </Container>
 
       <Container>
-        {state.tasks.length > 0 ? (
+        {tasks.length > 0 ? (
           <div className={styles.responsiveTable}>
             <table>
               <thead>
@@ -87,7 +76,7 @@ const History = () => {
                       <td>{task.duration} min</td>
                       <td>{formatDate(task.startDate)}</td>
                       <td>{isTaskCompleted(task)}</td>
-                      <td>{returnTypeTask(task.type)}</td>
+                      <td>{dictionaryType[task.type]}</td>
                     </tr>
                   );
                 })}
