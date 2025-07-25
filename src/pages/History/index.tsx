@@ -31,11 +31,7 @@ const History = () => {
       return 'Interrompida';
     }
 
-    if (
-      task.interruptDate === null &&
-      task.completeDate === null &&
-      state.activeTask
-    ) {
+    if (task.id === state.activeTask?.id) {
       return 'Em andamento';
     }
 
