@@ -71,6 +71,13 @@ export function taskReducer(
       };
     }
 
+    case 'LOAD_TASK': {
+      return {
+        ...state,
+        ...action.payload,
+      };
+    }
+
     case 'RESET_STATE':
       return {
         ...state,

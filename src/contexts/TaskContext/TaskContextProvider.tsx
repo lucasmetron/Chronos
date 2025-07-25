@@ -5,14 +5,30 @@ import { taskReducer } from './taskReducer';
 import { TimerWorkerManager } from '../../workers/TimerWorkerManager';
 import { TaskActionTypes } from './taskActions';
 import { playRing } from '../../utils/functions';
+import type { TaskStateModel } from '../../models/TaskStateModel';
 
 interface TaskContextProvider {
   children: React.ReactNode;
 }
 
+function returnInitialState(): TaskStateModel {
+  const stateSaved = localStorage.getItem('chronos:taskState');
+
+  if (typeof stateSaved === 'string') {
+    const state = JSON.parse(stateSaved) as TaskStateModel;
+    return {
+      ...state,
+      secondsRemaining: 0,
+      activeTask: null,
+      formattedSecondsRemaining: '00:00',
+    };
+  }
+  return initialTaskState;
+}
+
 export function TaskContextProvider({ children }: TaskContextProvider) {
   const worker = TimerWorkerManager.getInstance();
-  const [state, dispatch] = useReducer(taskReducer, initialTaskState);
+  const [state, dispatch] = useReducer(taskReducer, returnInitialState());
 
   useLayoutEffect(() => {
     if (!state.activeTask) {
@@ -40,6 +56,11 @@ export function TaskContextProvider({ children }: TaskContextProvider) {
       }
     });
   }, [state, worker]);
+
+  //salva tudo no localStorage quando o estado muda
+  useLayoutEffect(() => {
+    localStorage.setItem('chronos:taskState', JSON.stringify(state));
+  }, [state]);
 
   return (
     <TaskContext.Provider value={{ state, dispatch }}>

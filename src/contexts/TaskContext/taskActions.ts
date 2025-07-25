@@ -10,6 +10,7 @@ export enum TaskActionTypes {
   REFRESH_COUNTER = 'REFRESH_COUNTER',
   RESET_STATE = 'RESET_STATE',
   SET_SETTINGS_TIME = 'SET_SETTINGS_TIME',
+  LOAD_TASK = 'LOAD_TASK',
 }
 
 export type TaskActionModel =
@@ -24,6 +25,10 @@ export type TaskActionModel =
   | {
       type: TaskActionTypes.SET_SETTINGS_TIME;
       payload: typeof initialTaskState.config;
+    }
+  | {
+      type: TaskActionTypes.LOAD_TASK;
+      payload: typeof initialTaskState;
     }
   | { type: TaskActionTypes.INTERRUPT_TASK }
   | { type: TaskActionTypes.COMPLETED_TASK }
