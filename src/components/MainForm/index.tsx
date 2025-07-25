@@ -16,7 +16,7 @@ const MainForm = () => {
   const { state, dispatch } = useTaskContext();
 
   const [taskName, setTaskNAme] = useState(
-    state.tasks[state.tasks.length]?.name || '',
+    state.tasks[state.tasks.length - 1]?.name || '',
   );
 
   const nextCycle = getNextCycle(state.currentCycle);
