@@ -46,12 +46,12 @@ const History = () => {
   return (
     <MainTemplate>
       <Container>
-        <Heading>
-          Histórico
-          <div className={styles.containerBtn}>
+        <div className={styles.containerBtn}>
+          <Heading>
+            Histórico
             <DefaultButton icon={<Trash />} onClick={handleDeleteAllHistory} />
-          </div>
-        </Heading>
+          </Heading>
+        </div>
       </Container>
 
       <Container>
