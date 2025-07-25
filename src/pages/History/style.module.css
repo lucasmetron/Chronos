@@ -1,0 +1,47 @@
+.containerBtn button {
+  min-width: auto;
+  padding: 1rem;
+  background-color: red;
+}
+
+.containerBtn svg {
+  width: 2rem;
+  height: 2rem;
+  color: var(--gray-100);
+}
+
+.responsiveTable {
+  overflow-x: auto;
+  border-radius: 0.8rem;
+  padding-bottom: 2rem;
+}
+
+.responsiveTable table {
+  width: 100%;
+  min-width: 64rem;
+  font-size: 1.6rem;
+  border-collapse: collapse;
+}
+
+.responsiveTable th {
+  background-color: var(--gray-600);
+}
+
+.responsiveTable td {
+  background-color: var(--gray-800);
+}
+
+.responsiveTable th,
+.responsiveTable td {
+  border-bottom: 0.2rem solid var(--gray-700);
+  text-align: left;
+  padding: 1.6rem;
+}
+
+.noData {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  color: var(--gray-300);
+}

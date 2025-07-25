@@ -82,6 +82,17 @@ export function taskReducer(
       return {
         ...state,
       };
+
+    case 'DELETE_HISTORY':
+      return {
+        ...state,
+        tasks: [],
+        activeTask: null,
+        secondsRemaining: 0,
+        formattedSecondsRemaining: '00:00',
+        currentCycle: 0,
+      };
+
     default:
       return state;
   }

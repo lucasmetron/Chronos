@@ -11,6 +11,7 @@ export enum TaskActionTypes {
   RESET_STATE = 'RESET_STATE',
   SET_SETTINGS_TIME = 'SET_SETTINGS_TIME',
   LOAD_TASK = 'LOAD_TASK',
+  DELETE_HISTORY = 'DELETE_HISTORY',
 }
 
 export type TaskActionModel =
@@ -32,4 +33,5 @@ export type TaskActionModel =
     }
   | { type: TaskActionTypes.INTERRUPT_TASK }
   | { type: TaskActionTypes.COMPLETED_TASK }
-  | { type: TaskActionTypes.RESET_STATE };
+  | { type: TaskActionTypes.RESET_STATE }
+  | { type: TaskActionTypes.DELETE_HISTORY };

@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import type { TaskModel } from '../models/TaskModel';
 
 export function getNextCycle(cycle: number) {
@@ -25,4 +26,9 @@ export function playRing() {
   audio.play().catch(error => {
     console.error('Error playing sound:', error);
   });
+}
+
+export function formatDate(timestamp: number): string {
+  const date = new Date(timestamp);
+  return format(date, 'dd/MM/yyyy HH:mm');
 }
